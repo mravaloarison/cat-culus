@@ -1,14 +1,16 @@
-import pygame, cv2
-from Hand import HandTracker
+import pygame
+from utils.hand_tracker import get_hands, display_hands
+import Setup as sp
+from UIElements import RoundedTextBox
 
-GAME_WIDTH, GAME_HEIGHT = 1366, 1010
+from Test import ai_response
 
 pygame.init()
+pygame.display.set_caption("Cat-Culus")
 
-screen = pygame.display.set_mode([GAME_WIDTH, GAME_HEIGHT], pygame.RESIZABLE)
+screen = pygame.display.set_mode([sp.GAME_WIDTH, sp.GAME_HEIGHT], pygame.RESIZABLE)
 
-capture = cv2.VideoCapture(0)
-hand_tracker = HandTracker(capture)
+text_box = RoundedTextBox("Hello, Centered!", sp.MD_TEXT, sp.GAME_WIDTH, sp.GAME_HEIGHT, (400, 100))
 
 running = True
 while running:
@@ -18,14 +20,11 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    frame = hand_tracker.track_hands()
-    count_left_hand, count_right_hand = hand_tracker.finger_count()
+    count_left_hand, count_right_hand = get_hands(sp.hand_tracker, screen, pygame)
+    display_hands(screen, count_left_hand, count_right_hand, sp)
 
-    if frame is not None:
-        frame_surface = pygame.surfarray.make_surface(cv2.transpose(frame)) 
-        screen.blit(frame_surface, (0, 0)) 
+    text_box.draw(screen)
 
     pygame.display.update()
 
 pygame.quit()
-capture.release()

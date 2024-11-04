@@ -42,5 +42,22 @@ def run_hand_tracker(cam_id = 0):
     capture.release()
     cv2.destroyAllWindows()
 
+def get_hands(hand_tracker, screen, pygame):
+    frame = hand_tracker.track_hands()
+    count_left_hand, count_right_hand = hand_tracker.finger_count()
+
+    if frame is not None:
+        frame_surface = pygame.surfarray.make_surface(cv2.transpose(frame)) 
+        screen.blit(frame_surface, (0, 0)) 
+
+    return count_left_hand, count_right_hand
+
+def display_hands(screen, count_left_hand, count_right_hand, sp):
+    left_hand_text = sp.MD_TEXT.render(f"X (left hand): {count_left_hand}", True, (0, 255, 255))
+    right_hand_text = sp.MD_TEXT.render(f"Y (right hand): {count_right_hand}", True, (0, 255, 255))
+
+    screen.blit(left_hand_text, (sp.GAME_WIDTH - left_hand_text.get_width() - 30, 30))
+    screen.blit(right_hand_text, (sp.GAME_WIDTH - left_hand_text.get_width() - 47, 75))
+
 if __name__ == "__main__":
     run_hand_tracker()

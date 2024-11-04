@@ -59,3 +59,4 @@ class HandTracker:
     
     def finger_count(self):
         return self.left_finger_count, self.right_finger_count
+    
