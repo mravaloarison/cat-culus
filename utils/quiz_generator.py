@@ -8,12 +8,13 @@ prompt_to_json_model = genai.GenerativeModel("gemini-1.5-flash",
 
 def generate_quiz():
     prompt = """
-    Generate 5 math-based quizzes that meet the following criteria:
+    Generate 15 math-based quizzes that meet the following criteria:
         - Each question should involve two unknown numbers, x and y, and use all addition, subtraction, multiplication, square, cube, or other mathematical operations.
         - Don't Always use the same operation for each question.
         - Ensure x and y are always less than or equal to 5 in value.
         - The challenge should be for the user to guess x and y based on the given equation.
         - The instruction should not reveal that the numbers are less than 5.
+        - The 15 questions should be 5 easy, 5 medium, and 5 hard.
         - Examples:
             * 'instructions': 'Find the two numbers, x and y, that satisfy the equation: x + y = 10.', 'combinations': [[5, 5]]
             -> Explanation: The only combination of x and y that satisfies the equation x + y = 10 is 5 + 5 = 10.

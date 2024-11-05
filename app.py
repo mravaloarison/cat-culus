@@ -1,7 +1,7 @@
 import pygame
 from utils.hand_tracker import get_hands, display_hands
 import Setup as sp
-from UIElements import RoundedTextBox
+from Quiz import play_quiz
 
 from Test import ai_response
 
@@ -10,7 +10,8 @@ pygame.display.set_caption("Cat-Culus")
 
 screen = pygame.display.set_mode([sp.GAME_WIDTH, sp.GAME_HEIGHT], pygame.RESIZABLE)
 
-text_box = RoundedTextBox("Hello, Centered!", sp.MD_TEXT, sp.GAME_WIDTH, sp.GAME_HEIGHT, (400, 100))
+init_quiz = ai_response
+question_index = 0
 
 running = True
 while running:
@@ -22,8 +23,8 @@ while running:
 
     count_left_hand, count_right_hand = get_hands(sp.hand_tracker, screen, pygame)
     display_hands(screen, count_left_hand, count_right_hand, sp)
-
-    text_box.draw(screen)
+    
+    question_index = play_quiz(init_quiz, screen, count_left_hand, count_right_hand, question_index)
 
     pygame.display.update()
 
