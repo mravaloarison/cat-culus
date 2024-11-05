@@ -3,7 +3,6 @@ from UIElements import RoundedTextBox
 
 class Quiz:
     def __init__(self, quiz):
-        self.sign = quiz["sign"]
         self.instructions = quiz["instructions"]
         self.combinations = quiz["combinations"]
 
@@ -24,12 +23,9 @@ def prepare_quiz(init_quiz):
     return quiz, generated_quiz
 
 def play_quiz(init_quiz, screen, count_left_hand, count_right_hand, quiz_index):
-    from UIElements import RoundedTextBox
-    import Setup as sp
-
     if quiz_index >= len(init_quiz):
         quiz = RoundedTextBox(
-            "Congratulations, Game Completed!", 
+            "Game Completed!", 
             sp.MD_TEXT, sp.GAME_WIDTH, sp.GAME_HEIGHT, (400, 100)
         )
         quiz.draw(screen)
@@ -42,5 +38,3 @@ def play_quiz(init_quiz, screen, count_left_hand, count_right_hand, quiz_index):
         quiz_index += 1
 
     return quiz_index
-
-

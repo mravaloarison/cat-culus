@@ -1,10 +1,10 @@
 ai_response = [
 	{
-		"sign": "x + y^2 = 13",
-		"answer": 13,
+		"sign": "x + y = 2",
+		"answer": 2,
 		"instructions":
-			"Find the two numbers, x and y, that satisfy the equation: x + y^2 = 13.",
-		"combinations": [[1, 3]],
+			"Find the two numbers, x and y, that satisfy the equation: x + y = 2.",
+		"combinations": [[1, 1], [2, 0], [0, 2]],
 	},
 	{
 		"sign": "x^2 - y = 1",
