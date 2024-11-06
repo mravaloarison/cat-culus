@@ -42,6 +42,11 @@ def play_quiz(
             sp.MD_TEXT, sp.GAME_WIDTH, sp.GAME_HEIGHT, (400, 100)
         )
         quiz.draw(screen)
+        sp.is_game_complete = True
+
+        return quiz_index
+    
+    if sp.is_game_over:
         return quiz_index
 
     quiz, generated_quiz = prepare_quiz(init_quiz[quiz_index])

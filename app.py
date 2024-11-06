@@ -3,13 +3,8 @@ from utils.hand_tracker import get_hands, display_hands
 import Setup as sp
 from Quiz import play_quiz
 
-from Test import ai_response
-
 pygame.init()
 pygame.display.set_caption("Cat-Culus")
-
-init_quiz = ai_response
-question_index = 0
 
 clock = pygame.time.Clock()
 
@@ -33,11 +28,11 @@ while running:
     frame_index_thunder = (pygame.time.get_ticks() // 100) % sp.thunder.num_frames_idle
     frame_index_thunder_hit = (pygame.time.get_ticks() // 100) % 5
 
-    question_index = play_quiz(
-        init_quiz, 
+    sp.question_index = play_quiz(
+        sp.init_quiz, 
         sp.screen, 
         count_left_hand, count_right_hand, 
-        question_index,
+        sp.question_index,
         current_time
     )
 
@@ -61,6 +56,15 @@ while running:
             sp.screen.blit(sp.empty_heart, (x, 30))
         else:
             sp.screen.blit(sp.full_heart, (x, 30))
+
+    if sp.hearts_used == sp.hearts_total:
+        sp.is_game_over = True
+
+    if sp.is_game_over:
+        sp.display_msg("Game Over!")
+
+    elif sp.is_game_complete:
+        sp.display_msg("Game Completed!")
 
     pygame.display.update()
     clock.tick(60)

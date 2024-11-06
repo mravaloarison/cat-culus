@@ -1,6 +1,5 @@
 import pygame
 import Setup as sp
-from Thunder import Thunder, ThunderManager
 
 pygame.init()
 
@@ -11,9 +10,10 @@ running = True
 
 hearts_total = 5
 hearts_used = 2
-
 while running:
     screen.fill((0, 0, 0))
+    sp.screen.blit(sp.bg_image, (0, 0))
+
     current_time = pygame.time.get_ticks()
 
     for event in pygame.event.get():
@@ -31,6 +31,8 @@ while running:
             sp.screen.blit(sp.empty_heart, (x, 30))
         else:
             sp.screen.blit(sp.full_heart, (x, 30))
+
+    sp.display_msg("Hello World")
 
     pygame.display.update()
     clock.tick(60)
