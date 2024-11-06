@@ -11,8 +11,6 @@ pygame.display.set_caption("Cat-Culus")
 init_quiz = ai_response
 question_index = 0
 
-cat = None
-
 clock = pygame.time.Clock()
 
 running = True
@@ -35,19 +33,22 @@ while running:
     frame_index_thunder = (pygame.time.get_ticks() // 100) % sp.thunder.num_frames_idle
     frame_index_thunder_hit = (pygame.time.get_ticks() // 100) % 5
 
-    sp.screen.blit(sp.broom, sp.BROOM_POSITION)
-    thunder = sp.screen.blit(sp.thunder.get_idle_frames()[int(frame_index_thunder)], sp.THUNDER_FINAL_POSITION)
-    cat = sp.screen.blit(sp.cat.get_idle_frames()[int(frame_cat)], sp.CAT_POSITION)
-
     question_index = play_quiz(
         init_quiz, 
         sp.screen, 
         count_left_hand, count_right_hand, 
         question_index,
-        frame_cat_attack,
-        frame_index_thunder_hit,
         current_time
     )
+
+    sp.screen.blit(sp.broom, sp.BROOM_POSITION)
+
+    if sp.isCatHit:
+        sp.screen.blit(sp.cat.get_hit_frames()[int(frame_cat_hit)], sp.CAT_POSITION)
+    elif sp.isCatAttack:
+        sp.screen.blit(sp.cat.get_attack_frames()[int(frame_cat_attack)], sp.CAT_POSITION)
+    else:
+        sp.screen.blit(sp.cat.get_idle_frames()[int(frame_cat)], sp.CAT_POSITION)
 
     pygame.display.update()
     clock.tick(60)

@@ -23,8 +23,13 @@ screen = pygame.display.set_mode([GAME_WIDTH, GAME_HEIGHT], pygame.RESIZABLE)
 thunder = Thunder("assets/thunder.png", scale_factor=1)
 cat = Cat("assets/cat.png", scale_factor=1)
 
+thunder_managers = []
+
 broom = pygame.image.load("assets/broom.png")
 
 CAT_POSITION = (GAME_WIDTH // 2 - 90, GAME_HEIGHT // 1.4 - 200)
 BROOM_POSITION = (GAME_WIDTH // 2 - 90, GAME_HEIGHT // 1.4 - 34)
 THUNDER_FINAL_POSITION = (GAME_WIDTH // 2 - 90, GAME_HEIGHT // 1.4 - 336)
+
+isCatHit = False
+isCatAttack = False
