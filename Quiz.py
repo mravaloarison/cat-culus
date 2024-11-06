@@ -1,6 +1,8 @@
 import Setup as sp
 from UIElements import RoundedTextBox
 
+animation_start_time = None  
+
 class Quiz:
     def __init__(self, quiz):
         self.instructions = quiz["instructions"]
@@ -22,7 +24,18 @@ def prepare_quiz(init_quiz):
 
     return quiz, generated_quiz
 
-def play_quiz(init_quiz, screen, count_left_hand, count_right_hand, quiz_index):
+def play_quiz(
+        init_quiz, 
+        screen, 
+        count_left_hand, 
+        count_right_hand, 
+        quiz_index,
+        frame_cat_attack,
+        frame_index_thunder_hit,
+        current_time
+    ):
+    global animation_start_time
+
     if quiz_index >= len(init_quiz):
         quiz = RoundedTextBox(
             "Game Completed!", 
@@ -35,6 +48,14 @@ def play_quiz(init_quiz, screen, count_left_hand, count_right_hand, quiz_index):
     quiz.draw(screen)
 
     if generated_quiz.is_correct(count_left_hand, count_right_hand):
-        quiz_index += 1
+        if animation_start_time is None:
+            animation_start_time = current_time
+
+        if current_time - animation_start_time < 600:
+            sp.screen.blit(sp.cat.get_attack_frames()[int(frame_cat_attack)], sp.CAT_POSITION)
+            sp.screen.blit(sp.thunder.get_hit_frames()[int(frame_index_thunder_hit)], sp.THUNDER_FINAL_POSITION)
+        else:
+            animation_start_time = None
+            quiz_index += 1
 
     return quiz_index

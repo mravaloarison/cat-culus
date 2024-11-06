@@ -8,9 +8,10 @@ class Cat:
         self.scaled_width = self.sprite_width * scale_factor
         self.scaled_height = self.sprite_height * scale_factor
         self.num_frames_idle = 10
+        self.num_frames_attack = 16
         self.num_frames_hit = 19
         self.idle_frames = self.load_frames(0, self.num_frames_idle)
-        self.attack_frames = self.load_frames(10, self.num_frames_hit)
+        self.attack_frames = self.load_frames(10, self.num_frames_attack)
         self.hit_frames = self.load_frames(16, self.num_frames_hit)
     
     def load_frames(self, start_frame, num_frames):

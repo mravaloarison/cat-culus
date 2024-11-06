@@ -14,7 +14,7 @@ class RoundedTextBox:
 
         self.position = (
             (canvas_width - self.box_size[0]) // 2,  
-            (canvas_height - self.box_size[1]) // 2 - 300 
+            (canvas_height - self.box_size[1]) // 2 - 200 
         )
 
     def wrap_text(self, text, max_width):
@@ -54,4 +54,4 @@ class RoundedTextBox:
         surface.fill((0, 0, 0), (self.position, self.box_size))
         pygame.display.update()
 
-        
+

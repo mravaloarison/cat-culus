@@ -1,4 +1,5 @@
-import pygame
+import pygame, random
+import Setup as sp
 
 class Thunder:
     def __init__(self, image_path, scale_factor=1):
@@ -25,3 +26,48 @@ class Thunder:
     
     def get_hit_frames(self):
         return self.hit_frames
+
+class ThunderManager:
+    def __init__(self, thunder_sprite, target_position, speed=2, hit_duration=500):
+        self.thunder = thunder_sprite  
+        self.target_position = target_position
+        self.speed = speed
+        self.hit_duration = hit_duration
+        self.current_position = self.generate_random_position()
+        self.reached_target = False
+        self.hit_animation_start_time = None
+
+    def generate_random_position(self):
+        corner_choice = random.choice(['top', 'left', 'right'])
+        if corner_choice == 'top':
+            x = random.randint(0, sp.GAME_WIDTH)
+            y = random.randint(0, sp.GAME_HEIGHT // 2 - 300)
+        elif corner_choice == 'left':
+            x = random.randint(0, 100)
+            y = random.randint(0, sp.GAME_HEIGHT // 2)
+        else:  
+            x = random.randint(sp.GAME_WIDTH - 100, sp.GAME_WIDTH)
+            y = random.randint(0, sp.GAME_HEIGHT // 2)
+        return [x, y]
+
+    def update(self, current_time):
+        if not self.reached_target:
+            dx = self.target_position[0] - self.current_position[0]
+            dy = self.target_position[1] - self.current_position[1]
+            distance = (dx**2 + dy**2)**0.5
+
+            if distance > self.speed:
+                self.current_position[0] += self.speed * (dx / distance)
+                self.current_position[1] += self.speed * (dy / distance)
+            else:
+                self.reached_target = True
+                self.hit_animation_start_time = current_time
+
+            frame_index = (current_time // 100) % self.thunder.num_frames_idle
+            return self.thunder.get_idle_frames()[int(frame_index)], self.current_position
+        else:
+            if current_time - self.hit_animation_start_time < self.hit_duration:
+                frame_index = (current_time // 100) % 5
+                return self.thunder.get_hit_frames()[int(frame_index)], self.target_position
+        
+            return None, None
