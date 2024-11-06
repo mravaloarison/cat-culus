@@ -2,6 +2,10 @@
 
 video link: (https://www.youtube.com/watch?v=NN-IrWTPusk)
 
+![Hand detected](assets/screenshots_hand_detected.png)
+
+![Game Over](assets/screenshots_game_over.png)
+
 ## Project Description
 
 A simple `Pygame` that leverages `Machine Learning` and `Artificial Intelligence` to save a cat by solving math problems. The design and game logic were primarily inspired by reverse engineering the [Google Cat Academy Third edition](https://doodles.google/doodle/halloween-2024/).
