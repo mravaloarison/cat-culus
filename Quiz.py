@@ -1,7 +1,6 @@
 import Setup as sp
 from UIElements import RoundedTextBox
 from Thunder import ThunderManager
-import time
 
 animation_start_time = None  
 thunder_created = False
