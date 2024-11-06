@@ -1,5 +1,7 @@
 # Cat-Culus
 
+video link: (https://www.youtube.com/watch?v=NN-IrWTPusk)
+
 ## Project Description
 
 A simple `Pygame` that leverages `Machine Learning` and `Artificial Intelligence` to save a cat by solving math problems. The design and game logic were primarily inspired by reverse engineering the [Google Cat Academy Third edition](https://doodles.google/doodle/halloween-2024/).
