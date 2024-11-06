@@ -28,7 +28,7 @@ class Thunder:
         return self.hit_frames
 
 class ThunderManager:
-    def __init__(self, thunder_sprite, target_position, speed=4.2, hit_duration=500):
+    def __init__(self, thunder_sprite, target_position, speed=9, hit_duration=500):
         self.thunder = thunder_sprite  
         self.target_position = target_position
         self.speed = speed

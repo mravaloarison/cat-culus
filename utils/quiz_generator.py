@@ -35,6 +35,6 @@ def generate_quiz():
 
     return array_of_keywords
 
-res = generate_quiz()
+# res = generate_quiz()
 
-print(res)
+# print(res)

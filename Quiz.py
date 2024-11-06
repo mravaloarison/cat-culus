@@ -72,6 +72,7 @@ def play_quiz(
         else:
             animation_start_time = None
             sp.isCatAttack = False
+            sp.SCORE = 10 if sp.SCORE == 0 else sp.SCORE * 2
             quiz_index += 1
         
     return quiz_index

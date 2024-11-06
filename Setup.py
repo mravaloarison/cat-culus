@@ -3,14 +3,14 @@ from Hand import HandTracker
 from Thunder import Thunder
 from Cat import Cat
 
-from Test import ai_response
+from utils.quiz_generator import generate_quiz
 
 pygame.font.init()
 
 capture = cv2.VideoCapture(0)
 hand_tracker = HandTracker(capture)
 
-init_quiz = ai_response
+init_quiz = generate_quiz()
 question_index = 0
 
 SCORE = 0
@@ -59,6 +59,7 @@ try_again = pygame.image.load("assets/try_again.png")
 try_again_hovered = pygame.image.load("assets/try_again_hovered.png")
 
 def display_msg(msg):
+    global SCORE
     game_over_bg.fill((0, 0, 0))
     game_over_text_surface = LG_TEXT.render(msg, True, (255, 255, 255))
     score_text_surface = XL_TEXT.render(f"{SCORE}", True, (255, 255, 255))
@@ -92,7 +93,8 @@ def display_msg(msg):
                 is_game_complete = False
                 hearts_used = 0
                 question_index = 0
-                init_quiz = ai_response
+                init_quiz = generate_quiz()
                 question_index = 0
+                SCORE = 0
 
                 return

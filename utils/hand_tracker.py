@@ -57,7 +57,7 @@ def display_hands(screen, count_left_hand, count_right_hand, sp):
     right_hand_text = sp.MD_TEXT.render(f"Y (right hand): {count_right_hand}", True, (0, 255, 255))
 
     screen.blit(left_hand_text, (sp.GAME_WIDTH - left_hand_text.get_width() - 30, 30))
-    screen.blit(right_hand_text, (sp.GAME_WIDTH - left_hand_text.get_width() - 47, 75))
+    screen.blit(right_hand_text, (sp.GAME_WIDTH - right_hand_text.get_width() - 30, 75))
 
 if __name__ == "__main__":
     run_hand_tracker()

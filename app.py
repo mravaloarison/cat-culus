@@ -22,6 +22,9 @@ while running:
     count_left_hand, count_right_hand = get_hands(sp.hand_tracker, sp.screen, pygame)
     display_hands(sp.screen, count_left_hand, count_right_hand, sp)
 
+    score_text = sp.LG_TEXT.render(f"Score: {sp.SCORE}", True, (0, 255, 0))
+    sp.screen.blit(score_text, (sp.GAME_WIDTH - score_text.get_width() - 30, 120))
+
     frame_cat = (pygame.time.get_ticks() // 100) % sp.cat.num_frames_idle
     frame_cat_hit = (pygame.time.get_ticks() // 100) % 3
     frame_cat_attack = (pygame.time.get_ticks() // 100) % 6
