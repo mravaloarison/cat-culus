@@ -6,14 +6,11 @@ pygame.init()
 
 screen = pygame.display.set_mode((sp.GAME_WIDTH, sp.GAME_HEIGHT))
 
-thunder_sprite = Thunder("assets/thunder.png", scale_factor=1)
-
-thunder_managers = []
-
-target_position = sp.THUNDER_FINAL_POSITION
-
 clock = pygame.time.Clock()
 running = True
+
+hearts_total = 5
+hearts_used = 2
 
 while running:
     screen.fill((0, 0, 0))
@@ -22,16 +19,18 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            if event.button == 1:  
-                thunder_manager = ThunderManager(thunder_sprite, target_position)
-                thunder_managers.append(thunder_manager)
 
-    for thunder_manager in thunder_managers:
-        thunder_frame, thunder_position = thunder_manager.update(current_time)
-        
-        if thunder_frame and thunder_position:
-            screen.blit(thunder_frame, thunder_position)
+    heart_width = sp.full_heart.get_width()
+    heart_spacing = 20
+    total_heart_width = heart_width * hearts_total + heart_spacing * (hearts_total - 1)
+    start_x = sp.GAME_WIDTH // 2 - total_heart_width // 2
+
+    for i in range(hearts_total):
+        x = start_x + i * (heart_width + heart_spacing)
+        if i >= hearts_total - hearts_used:
+            sp.screen.blit(sp.empty_heart, (x, 30))
+        else:
+            sp.screen.blit(sp.full_heart, (x, 30))
 
     pygame.display.update()
     clock.tick(60)

@@ -33,3 +33,9 @@ THUNDER_FINAL_POSITION = (GAME_WIDTH // 2 - 90, GAME_HEIGHT // 1.4 - 336)
 
 isCatHit = False
 isCatAttack = False
+
+full_heart = pygame.image.load("assets/full_heart.png")
+empty_heart = pygame.image.load("assets/empty_heart.png")
+
+hearts_total = 5
+hearts_used = 0

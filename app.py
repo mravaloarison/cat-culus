@@ -50,6 +50,18 @@ while running:
     else:
         sp.screen.blit(sp.cat.get_idle_frames()[int(frame_cat)], sp.CAT_POSITION)
 
+    heart_width = sp.full_heart.get_width()
+    heart_spacing = 20
+    total_heart_width = heart_width * sp.hearts_total + heart_spacing * (sp.hearts_total - 1)
+    start_x = sp.GAME_WIDTH // 2 - total_heart_width // 2
+
+    for i in range(sp.hearts_total):
+        x = start_x + i * (heart_width + heart_spacing)
+        if i >= sp.hearts_total - sp.hearts_used:
+            sp.screen.blit(sp.empty_heart, (x, 30))
+        else:
+            sp.screen.blit(sp.full_heart, (x, 30))
+
     pygame.display.update()
     clock.tick(60)
 

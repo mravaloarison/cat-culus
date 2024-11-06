@@ -95,4 +95,5 @@ class ThunderManager:
                 self.was_hit = False
                 self.current_position = self.generate_random_position()
                 sp.isCatHit = False
+                sp.hearts_used += 1
                 return None, None
