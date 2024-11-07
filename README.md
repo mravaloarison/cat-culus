@@ -1,6 +1,6 @@
 # Cat-Culus
 
-video link: (https://www.youtube.com/watch?v=NN-IrWTPusk)
+video link: (https://www.youtube.com/watch?v=ToHxbKb4sEQ)
 
 ![Hand detected](assets/screenshots_hand_detected.png)
 
