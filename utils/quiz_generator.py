@@ -1,10 +1,12 @@
-import google.generativeai as genai
+from google import genai
 import os, json
+from pydantic import BaseModel
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
-prompt_to_json_model = genai.GenerativeModel("gemini-1.5-flash", 
-    generation_config = {"response_mime_type": "application/json"})
+class QuizGenerated(BaseModel):
+    instructions: str
+    combinations: list[list[int, int]]
 
 def generate_quiz():
     prompt = """
@@ -24,17 +26,17 @@ def generate_quiz():
                 * 'Find the two numbers, x and y, that fulfill the equation: x / y = 2.', 'combinations': [[4, 2]]
                 -> Explanation: The only combination of x and y that satisfies the equation x / y = 2 is 4 / 2 = 2.
                 ....
-            - Return the output in a JSON object format with the following structure:
-                instructions: str 
-                combinations: List[Tuple[int, int]] 
-                Returns: [instructions, combinations]
     """
 
-    response = prompt_to_json_model.generate_content(prompt)
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=prompt,
+        config={
+            "response_mime_type": "application/json",
+            "response_schema": list[QuizGenerated],
+        }
+    )
+
     array_of_keywords = json.loads(response.text)
 
     return array_of_keywords
-
-# res = generate_quiz()
-
-# print(res)
