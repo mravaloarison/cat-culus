@@ -1,7 +1,8 @@
 # Cat-Culus
 
-[Video link](https://www.youtube.com/watch?v=ToHxbKb4sEQ)
-[Github](https://github.com/mravaloarison/cat-culus)
+🔗 [Video link](https://www.youtube.com/watch?v=ToHxbKb4sEQ)
+
+🔗 [Github](https://github.com/mravaloarison/cat-culus)
 
 ![Hand detected](assets/screenshots_hand_detected.png)
 
